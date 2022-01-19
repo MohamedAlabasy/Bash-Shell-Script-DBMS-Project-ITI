@@ -1,2 +1,6 @@
 mkdir: cannot create directory ‘DBMS’: File exists
 mkdir: cannot create directory ‘DBMS’: File exists
+mkdir: cannot create directory ‘DBMS/sister’: File exists
+mkdir: cannot create directory ‘DBMS/sister’: File exists
+mkdir: cannot create directory ‘DBMS/sister’: File exists
+mkdir: cannot create directory ‘DBMS/sister’: File exists
