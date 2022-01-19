@@ -10,7 +10,7 @@ then
 	echo "This Database is already Existed"
 else
        mkdir ./DBMS/$DBname 2>> ./.error.log  # to create Directory and set error in .error.log 
-       if [ $? = 0 ]                        # to check the last commande is run by the correct way
+       if [ $? -eq 0 ]                        # to check the last commande is run by the correct way
        then
 	     echo "your DataBase created sucessfully"
        else
