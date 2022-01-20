@@ -7,4 +7,3 @@ echo -e "${NC}Your all Databae are :"
 ls --color ./DBMS	
 
 ./main.sh  #the command to return to main menu.
-
