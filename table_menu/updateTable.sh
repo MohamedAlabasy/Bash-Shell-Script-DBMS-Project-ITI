@@ -9,7 +9,7 @@ NC='\033[0m' 		# No Color
 echo -e "${NC}Enter your Database Name : ${Blue}\c${NC}"
 read DBname     
 echo -e "${NC}Available Tables in $DBname is : "
-ls ./DBMS/$DBname
+ls --color ./DBMS/$DBname
 read -p "please enter table name : " TableName
 coloumnsCount=`awk -F, 'NR==1 {print NF}'  ./DBMS/$DBname/$TableName`
 for(( i=1;i<$coloumnsCount;i++ ))
@@ -82,5 +82,5 @@ fi
          done
      awk -F, '$"'$cl'"=="'$conVal'" {$"'$colNum'"="'$newValue'"} {for(i=1 ;i<=NF ;i++ ) { if (i==NF) print $i; else printf "%s",$i","}}'  ./DBMS/$DBname/$TableName > updatFile
      cat updatFile >  ./DBMS/$DBname/$TableName
-       echo -e "${Green}Your record updated sucessfuly${NC}"
+       echo -e "${Green}Your Data Updated Sucessfuly${NC}"
        main_menu/connectToDB.sh # to back to manu again  
