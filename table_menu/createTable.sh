@@ -19,6 +19,7 @@ if [ -d  ./DBMS/$DBname ]             # to check if this DataBase Exist or not
          		echo -e "${RED}Your Table is Empty${NC}" 
       	fi
 	echo -e "${NC}Enter your New Table Name: ${Blue}\c${NC}"
+
 	read TableName
 	#-------------- check valid table name -----------------------#
 	 if [[ ! $TableName =~  ^[a-zA-Z]+[a-zA-Z0-9]*$ ]] || [[ $TableName == '' ]]   #(~) to tell the next is Regular Expression, (+) one or more occurrences of the preceding element concatenat
@@ -34,7 +35,7 @@ if [ -d  ./DBMS/$DBname ]             # to check if this DataBase Exist or not
 		  touch ./DBMS/$DBname/$TableName
 	fi
      #---------------get columns Data--------------------------------#
-      
+    
  echo -e "${NC}Enter your Number of Column : ${Blue}\c${NC}"
  read colNum
 while [ $colNum -le 0 ]                       # to check the entered number > 0  while 1
@@ -61,6 +62,7 @@ do
 	       read colName;
    fi                                       #end if 1      
    echo -e "${NC}data type of cloumn $colName"
+
    
     select typ in "int" "string"           # to select the constrain of the column
     do
@@ -87,6 +89,7 @@ do
                      metadata+="%"$colName"%"$colType"%"$pkey"%"$seperator
                             ;;
                      [Nn] ) 
+
                               metadata+="%"$colName"%"$colType"%"$seperator
                                ;;
                               
@@ -117,5 +120,6 @@ done                                    #end while 2
 else
        echo -e "${RED}$DBname is not Exist${NC}"
 	main_menu/connectToDB.sh # to back to manu again
+
 fi
 
