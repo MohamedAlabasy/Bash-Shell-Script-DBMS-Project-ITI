@@ -12,13 +12,13 @@ if [ -d DBMS/$DBname ]
 	then
       		if [ `ls DBMS/$DBname -l | wc -l`  -gt 1 ];	# Greater than , wc -l  prints the line count
 		then 
-         		echo -e "${NC}Your Tables Are : "
+         		echo -e "${Green}Your Tables Are : ${NC}"
          		ls DBMS/$DBname
       		else
-         		echo -e "${Green}Your Database is Empty${NC}" 
+         		echo -e "${RED}Theie is Not Table to Show${NC}" 
       		fi
   	else
     	  	echo -e "${RED}There Is No Database Called${NC} $DBname"
 fi   
-main_menu/connectToDB.sh
+main_menu/connectToDB.sh # to back to manu again
 

@@ -12,10 +12,14 @@ read DBname
          #------------- check if this DataBase Exist or not ---------#
 if [ -d  ./DBMS/$DBname ]             # to check if this DataBase Exist or not       
  then
-        echo -e "${NC}$DBname ${Green}is Existing :)${NC}"
-        echo -e "Your Tables:"
-	ls ./DBMS/$DBname
-	echo "Enter your New Table Name"
+	if [ `ls DBMS/$DBname -l | wc -l`  -gt 1 ];	# Greater than , wc -l  prints the line count
+		then 
+         		echo -e "${NC}Your Tables are : "`ls ./DBMS/$DBname`
+      		else
+         		echo -e "${RED}Your Table is Empty${NC}" 
+      	fi
+	echo -e "${NC}Enter your New Table Name: ${Blue}\c${NC}"
+
 	read TableName
 	#-------------- check valid table name -----------------------#
 	 if [[ ! $TableName =~  ^[a-zA-Z]+[a-zA-Z0-9]*$ ]] || [[ $TableName == '' ]]   #(~) to tell the next is Regular Expression, (+) one or more occurrences of the preceding element concatenat
@@ -25,19 +29,19 @@ if [ -d  ./DBMS/$DBname ]             # to check if this DataBase Exist or not
        #-------------- check if table is exist----------------------#
 	   elif [[ -f ./DBMS/$DBname/$TableName ]]
 	     then
-		  echo -e "${NC}${Green}$TableName is already exist ${NC}"
+		  echo -e "${Green}$TableName is already exist ${NC}"
 		  ./main_menu/connectToDB.sh    #return to connect menu
 	    else
 		  touch ./DBMS/$DBname/$TableName
 	fi
      #---------------get columns Data--------------------------------#
-      
- echo  "Enter your Number of Column:"
+    
+ echo -e "${NC}Enter your Number of Column : ${Blue}\c${NC}"
  read colNum
 while [ $colNum -le 0 ]                       # to check the entered number > 0  while 1
 do
       echo -e "${Yellow}please enter invalid number${NC}"
-      echo -e "Enter your Number of Column:${Blue} \c${Nc}"
+      echo -e "Enter your Number of Column : ${Blue} \c${Nc}"
       read colNum
     
 done                                          #End of While1
@@ -48,18 +52,17 @@ pkey="true"
 
 while [ $i -le $colNum ]                     # loop to get all data for each column  while 2
 do
-echo $i
-
-    echo "Enter your column Name"
+    echo -e "${NC}Enter Name of column Number $i : ${Blue}\c${NC}"
     read colName
 
    if [ -z "$colName" ]                     #test for empty colunm name if 1
        then
 	       echo -e "${Red}colum name can not be empty${NC}";
-	       echo -e "Enter your column Name ${Blue}\c${NC}";
+	       echo -e "Enter your column Name : ${Blue}\c${NC}";
 	       read colName;
    fi                                       #end if 1      
-   echo " data type of cloumn $colName"
+   echo -e "${NC}data type of cloumn $colName"
+
    
     select typ in "int" "string"           # to select the constrain of the column
     do
@@ -78,15 +81,15 @@ echo $i
      
     if [ $pkey=="true" ]                   # to make this column Primary key or Not  if 2                      
       then
-        echo " you want to make primaryKey y/n?"
-        
+        echo -e "Do you want to make it a primaryKey? [y/n]"
          read choice
          case $choice in
-                    [Yy]* )
+                    [Yy] )
                      pkey="Pk"
                      metadata+="%"$colName"%"$colType"%"$pkey"%"$seperator
                             ;;
-                     [Nn]* ) 
+                     [Nn] ) 
+
                               metadata+="%"$colName"%"$colType"%"$seperator
                                ;;
                               
@@ -112,10 +115,11 @@ done                                    #end while 2
      else
        echo -e"${Red} ther are error can not create  $TableName ${NC}"
    fi
-    ./main_menu/connectToDB.sh    #return to connect menu
+    main_menu/connectToDB.sh # to back to manu again
 
 else
        echo -e "${RED}$DBname is not Exist${NC}"
-	./main.sh
+	main_menu/connectToDB.sh # to back to manu again
+
 fi
 
