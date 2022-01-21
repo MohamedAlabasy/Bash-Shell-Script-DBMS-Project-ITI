@@ -1,5 +1,5 @@
 # Bash-Project-ITI-
-![Bash Project](https://user-images.githubusercontent.com/93389016/150016159-8a0fedfd-3f18-4a32-87cd-3e5588cdedda.jpg)  
+![Bash Project drawio](https://user-images.githubusercontent.com/93389016/150598101-24c38756-f977-4200-8466-c9957beb3a89.png)
 
 Bash Shell Script Database Management System (DBMS) requirements:  
 
