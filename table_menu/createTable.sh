@@ -81,7 +81,7 @@ do
      
     if [ $pkey=="true" ]                   # to make this column Primary key or Not  if 2                      
       then
-        echo -e "Do you want to make it a primaryKey? [y/n]"
+        echo -e "Do you want to make it a primaryKey? [y/n] : \c"
          read choice
          case $choice in
                     [Yy] )
