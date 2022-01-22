@@ -18,7 +18,8 @@ if [ -d  ./DBMS/$DBname ]                                                       
 	if [[ -f ./DBMS/$DBname/$TableName ]]
 	 then
 	 	echo -e "Your Columns :"
-	 	cat ./DBMS/$DBname/$TableName                                                      #to show the columns 
+	 	echo -e "${Blue}PK,Name,Track${NC} :"
+	 	sed '1d;' DBMS/$DBname/$TableName 2>>./.error.log                                                      #to show the columns 
 		echo -e "${NC}Enter primary key of which row you want to delete :${Blue}\c${NC}"
 		read PK
 		row=`awk -F, '{{if(($1=='$PK')){print NR}}}' ./DBMS/$DBname/$TableName`            #to get the row number
